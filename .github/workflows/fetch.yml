@@ -1,0 +1,27 @@
+name: Fetch LeetCode Stats
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch stats and update JSON
+        run: |
+          fetch_user() {
+            USERNAME=$1
+            RESPONSE=$(curl -s -X POST https://leetcode.com/graphql \
+              -H "Content-Type: application/json" \
+              -H "User-Agent: Mozilla/5.0" \
+              -d "{\"query\":\"query(\$u:String!){matchedUser(username:\$u){submitStats{acSubmissionNum{difficulty count}}}}\",\"variables\":{\"u\":\"$USERNAME\"}}")
+            
+            EASY=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); nums=d['data']['matchedUser']['submitStats']['acSubmissionNum']; print(next(x['count'] for x in nums if x['difficulty']=='Easy'))" 2>/dev/null || echo 0)
+            MEDIUM=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); nums=d['data']['matchedUser']['su
