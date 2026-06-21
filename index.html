@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DSA Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0a0a0f;
+  --surface:#111118;
+  --surface2:#1a1a24;
+  --border:#ffffff12;
+  --border2:#ffffff22;
+  --text:#f0f0f5;
+  --muted:#6b6b80;
+  --hint:#3d3d50;
+  --purple:#7f77dd;
+  --purple-dim:#3c3489;
+  --teal:#1d9e75;
+  --teal-dim:#085041;
+  --coral:#d85a30;
+  --coral-dim:#712b13;
+  --gold:#ef9f27;
+  --silver:#b4b2a9;
+  --bronze:#f0997b;
+  --easy:#1d9e75;
+  --medium:#ba7517;
+  --hard:#a32d2d;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;padding:0}
+
+.page{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
+
+.hero{text-align:center;padding:3rem 0 2.5rem;border-bottom:0.5px solid var(--border);margin-bottom:2rem}
+.wordmark{font-family:var(--mono);font-size:52px;font-weight:700;letter-spacing:-2px;color:var(--text);line-height:1}
+.wordmark span{color:var(--purple)}
+.tagline{font-size:11px;letter-spacing:0.15em;color:var(--muted);margin-top:10px;text-transform:uppercase;font-family:var(--mono)}
+.race-bar{width:48px;height:2px;background:var(--purple);margin:12px auto 0}
+
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--teal);font-family:var(--mono);background:#085041;padding:4px 10px;border-radius:99px;border:0.5px solid var(--teal-dim)}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 1.4s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+.refresh-btn{font-family:var(--mono);font-size:11px;background:transparent;border:0.5px solid var(--border2);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.15s}
+.refresh-btn:hover{border-color:var(--purple);color:var(--purple)}
+.refresh-btn svg{width:12px;height:12px}
+.ts{font-size:10px;color:var(--hint);font-family:var(--mono)}
+
+.board{display:flex;flex-direction:column;gap:10px}
+
+.pcard{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:12px 0 0 12px}
+.pcard.r1::before{background:var(--gold)}
+.pcard.r2::before{background:var(--silver)}
+.pcard.r3::before{background:var(--bronze)}
+.pcard:hover{border-color:var(--border2)}
+
+.row1{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.rank{font-family:var(--mono);font-size:10px;color:var(--hint);width:18px;text-align:center;flex-shrink:0}
+.av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;font-family:var(--mono);flex-shrink:0}
+.av0{background:var(--purple-dim);color:#afa9ec}
+.av1{background:var(--teal-dim);color:#5dcaa5}
+.av2{background:var(--coral-dim);color:#f0997b}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phandle{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.pscore{text-align:right;flex-shrink:0}
+.pscore-num{font-size:28px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
+.pscore-lbl{font-size:10px;color:var(--hint);font-family:var(--mono)}
+
+.diff-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
+.dbox{background:var(--surface2);border-radius:8px;padding:7px 10px;border:0.5px solid var(--border)}
+.dlbl{font-size:10px;color:var(--hint);font-family:var(--mono);margin-bottom:3px}
+.dval{font-size:16px;font-weight:700;font-family:var(--mono)}
+.easy{color:var(--easy)}.medium{color:var(--medium)}.hard{color:var(--hard)}
+
+.pb-wrap{margin-bottom:8px}
+.pb-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--hint);font-family:var(--mono);margin-bottom:4px}
+.pb-track{height:3px;background:var(--hint);border-radius:2px;overflow:hidden}
+.pb-fill{height:100%;border-radius:2px;transition:width 0.8s ease}
+.fill0{background:var(--purple)}.fill1{background:var(--teal)}.fill2{background:var(--coral)}
+
+.st-row{display:flex;align-items:center;gap:5px}
+.st-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.ok{background:var(--teal)}.err{background:#e24b4a}.idle{background:var(--hint)}
+.st-txt{font-size:10px;color:var(--hint);font-family:var(--mono)}
+
+.delta-badge{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:99px;margin-left:6px}
+.delta-up{background:#085041;color:#5dcaa5}
+.delta-zero{background:var(--surface2);color:var(--hint)}
+
+.updated-row{text-align:center;margin-top:2rem;font-size:11px;color:var(--hint);font-family:var(--mono)}
+
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.spinning{animation:spin 0.9s linear infinite}
+
+.error-state{text-align:center;padding:2rem;color:var(--muted);font-family:var(--mono);font-size:13px}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="wordmark">DSA<span>/</span>RACE</div>
+    <div class="tagline">leetcode leaderboard &nbsp;·&nbsp; udhay · mahi · kia</div>
+    <div class="race-bar"></div>
+  </div>
+
+  <div class="top-bar">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      <span id="live-txt">loading</span>
+    </div>
+    <button class="refresh-btn" onclick="loadStats()">
+      <svg id="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+      refresh
+    </button>
+  </div>
+
+  <div class="board" id="board">
+    <div class="error-state">fetching stats...</div>
+  </div>
+
+  <div class="updated-row" id="updated-row"></div>
+
+</div>
+
+<script>
+const STATS_URL = 'https://raw.githubusercontent.com/Udhay090/dsa-race/main/data/stats.json';
+
+const DISPLAY = {
+  'udhay090':    { name: 'Udhay',  avIdx: 0 },
+  'mahijoshii':  { name: 'Mahi',   avIdx: 1 },
+  'kiacoder123': { name: 'Kia',    avIdx: 2 },
+};
+
+let prevStats = {};
+
+function initials(name) {
+  return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function delta(username, total) {
+  const prev = prevStats[username];
+  if (prev === undefined) return null;
+  return total - prev;
+}
+
+function renderBoard(players, lastUpdated) {
+  const sorted = [...players].sort((a, b) => b.total - a.total);
+  const maxTotal = Math.max(1, ...players.map(p => p.total));
+
+  const rankLabels = ['01', '02', '03'];
+  const rankClass = ['r1', 'r2', 'r3'];
+
+  document.getElementById('board').innerHTML = sorted.map((p, i) => {
+    const d = DISPLAY[p.username] || { name: p.username, avIdx: i };
+    const pct = Math.round((p.total / maxTotal) * 100);
+    const dv = delta(p.username, p.total);
+    const deltaHtml = dv !== null
+      ? `<span class="delta-badge ${dv > 0 ? 'delta-up' : 'delta-zero'}">${dv > 0 ? '+' : ''}${dv}</span>`
+      : '';
+
+    return `<div class="pcard ${rankClass[i]}">
+      <div class="row1">
+        <span class="rank">${rankLabels[i]}</span>
+        <div class="av av${d.avIdx}">${initials(d.name)}</div>
+        <div class="pinfo">
+          <div class="pname">${d.name} ${deltaHtml}</div>
+          <div class="phandle">@${p.username}</div>
+        </div>
+        <div class="pscore">
+          <div class="pscore-num">${p.total}</div>
+          <div class="pscore-lbl">solved</div>
+        </div>
+      </div>
+      <div class="diff-row">
+        <div class="dbox"><div class="dlbl">easy</div><div class="dval easy">${p.easy}</div></div>
+        <div class="dbox"><div class="dlbl">medium</div><div class="dval medium">${p.medium}</div></div>
+        <div class="dbox"><div class="dlbl">hard</div><div class="dval hard">${p.hard}</div></div>
+      </div>
+      <div class="pb-wrap">
+        <div class="pb-meta"><span>vs leader</span><span>${pct}%</span></div>
+        <div class="pb-track"><div class="pb-fill fill${d.avIdx}" style="width:${pct}%"></div></div>
+      </div>
+      <div class="st-row">
+        <div class="st-dot ok"></div>
+        <span class="st-txt">synced</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  const dt = new Date(lastUpdated);
+  document.getElementById('updated-row').textContent =
+    `last fetched from leetcode · ${dt.toLocaleDateString('en-IN', {day:'numeric',month:'short'})} at ${dt.toLocaleTimeString('en-IN', {hour:'2-digit',minute:'2-digit'})}`;
+}
+
+async function loadStats() {
+  const ri = document.getElementById('ri');
+  ri.classList.add('spinning');
+  document.getElementById('live-txt').textContent = 'fetching...';
+
+  try {
+    const res = await fetch(STATS_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+
+    data.players.forEach(p => { prevStats[p.username] = p.total; });
+    renderBoard(data.players, data.lastUpdated);
+    document.getElementById('live-txt').textContent = 'live';
+  } catch (e) {
+    document.getElementById('board').innerHTML =
+      `<div class="error-state">could not load stats.json<br/>make sure the repo is public and GitHub Actions has run at least once</div>`;
+    document.getElementById('live-txt').textContent = 'error';
+  }
+
+  ri.classList.remove('spinning');
+}
+
+loadStats();
+</script>
+</body>
+</html>
