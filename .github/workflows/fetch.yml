@@ -39,7 +39,7 @@ jobs:
             echo "{\"username\":\"$U\",\"easy\":$E,\"medium\":$M,\"hard\":$H,\"total\":$T}"
           }
 
-          P1=$(fetch_user "udhay090")
+          P1=$(fetch_user "Road_to_500")
           P2=$(fetch_user "mahijoshii")
           P3=$(fetch_user "kiacoder123")
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
