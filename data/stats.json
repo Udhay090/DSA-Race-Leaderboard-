@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-06-22T03:29:33Z",
+  "lastUpdated": "2026-06-22T11:40:20Z",
   "players": [
     {"username":"Road_to_500","easy":39,"medium":60,"hard":2,"total":101},
-    {"username":"mahijoshii","easy":5,"medium":9,"hard":1,"total":15},
+    {"username":"mahijoshii","easy":5,"medium":11,"hard":1,"total":17},
     {"username":"kiacoder123","easy":50,"medium":54,"hard":6,"total":110}
   ]
 }
