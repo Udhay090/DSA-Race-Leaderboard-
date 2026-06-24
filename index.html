@@ -159,7 +159,7 @@ function renderBoard(players, lastUpdated) {
   const maxTotal = Math.max(1, ...players.map(p => p.total));
   
   const rankClass = ['r1', 'r2', 'r3', 'r4'];
-  const rankLabels = ['01', '02', '03', 'LAST'];
+  const rankLabels = ['Champion', '02', '03', 'LAST'];
 
   document.getElementById('board').innerHTML = sorted.map((p, i) => {
     const d = DISPLAY[p.username] || { name: p.username, avIdx: i };
