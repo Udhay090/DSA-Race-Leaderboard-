@@ -157,9 +157,9 @@ function delta(username, total) {
 function renderBoard(players, lastUpdated) {
   const sorted = [...players].sort((a, b) => b.total - a.total);
   const maxTotal = Math.max(1, ...players.map(p => p.total));
-
-  const rankLabels = ['01', '02', '03'];
-  const rankClass = ['r1', 'r2', 'r3'];
+  
+  const rankClass = ['r1', 'r2', 'r3', 'r4'];
+  const rankLabels = ['01', '02', '03', 'LAST'];
 
   document.getElementById('board').innerHTML = sorted.map((p, i) => {
     const d = DISPLAY[p.username] || { name: p.username, avIdx: i };
