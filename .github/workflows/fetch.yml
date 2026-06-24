@@ -42,7 +42,7 @@ jobs:
           P1=$(fetch_user "Road_to_500")
           P2=$(fetch_user "mahijoshii")
           P3=$(fetch_user "kiacoder123")
-          P4=$(fetch_user "leet_samiksha")
+          P4=$(fetch_user "Leet_samiksha")
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           printf '{\n  "lastUpdated": "%s",\n  "players": [\n    %s,\n    %s,\n    %s,\n    %s\n  ]\n}\n' "$TS" "$P1" "$P2" "$P3" "$P4"
