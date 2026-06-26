@@ -45,7 +45,17 @@ jobs:
           P4=$(fetch_user "Leet_samiksha")
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          printf '{\n  "lastUpdated": "%s",\n  "players": [\n    %s,\n    %s,\n    %s,\n    %s\n  ]\n}\n' "$TS" "$P1" "$P2" "$P3" "$P4"
+          cat > data/stats.json << JSONEOF
+          {
+            "lastUpdated": "$TS",
+            "players": [
+              $P1,
+              $P2,
+              $P3,
+              $P4
+            ]
+          }
+          JSONEOF
 
           python3 -c "import json; json.load(open('data/stats.json'))" && echo "JSON valid"
 
@@ -54,5 +64,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/stats.json
-          git diff --staged --quiet || git commit -m "chore: update stats $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "chore: update stats $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "nothing to commit"
           git push
