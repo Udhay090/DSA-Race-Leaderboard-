@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-06-26T14:09:39Z",
+  "lastUpdated": "2026-06-26T19:39:10Z",
   "players": [
     {"username":"Road_to_500","easy":45,"medium":62,"hard":2,"total":109},
-    {"username":"mahijoshii","easy":7,"medium":18,"hard":1,"total":26},
-    {"username":"kiacoder123","easy":50,"medium":58,"hard":6,"total":114},
+    {"username":"mahijoshii","easy":7,"medium":18,"hard":2,"total":27},
+    {"username":"kiacoder123","easy":50,"medium":59,"hard":6,"total":115},
     {"username":"Leet_samiksha","easy":12,"medium":0,"hard":1,"total":13}
   ]
 }
