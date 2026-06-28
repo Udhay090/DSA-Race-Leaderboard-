@@ -19,10 +19,13 @@ jobs:
           get_stat() {
             echo "$1" | python3 -c "
           import sys,json
-          d=json.load(sys.stdin)
-          nums=d['data']['matchedUser']['submitStats']['acSubmissionNum']
-          val=next((x['count'] for x in nums if x['difficulty']=='$2'),0)
-          print(val)
+          try:
+            d=json.load(sys.stdin)
+            nums=d['data']['matchedUser']['submitStats']['acSubmissionNum']
+            val=next((x['count'] for x in nums if x['difficulty']=='$2'),0)
+            print(val)
+          except:
+            print(0)
           " 2>/dev/null || echo 0
           }
 
