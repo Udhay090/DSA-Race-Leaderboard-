@@ -1,45 +1,68 @@
 name: Fetch LeetCode Stats
-
 on:
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
-
 jobs:
   fetch:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Fetch stats and update JSON
         run: |
-          get_stat() {
-            echo "$1" | python3 -c "
-          import sys,json
-          try:
-            d=json.load(sys.stdin)
-            nums=d['data']['matchedUser']['submitStats']['acSubmissionNum']
-            val=next((x['count'] for x in nums if x['difficulty']=='$2'),0)
-            print(val)
-          except:
-            print(0)
-          " 2>/dev/null || echo 0
-          }
-
           fetch_user() {
             U=$1
-            R=$(curl -s -X POST https://leetcode.com/graphql \
+
+            # Query 1: solved counts per difficulty
+            R1=$(curl -s -X POST https://leetcode.com/graphql \
               -H "Content-Type: application/json" \
               -H "User-Agent: Mozilla/5.0" \
-              -d '{"query":"query($u:String!){matchedUser(username:$u){submitStats{acSubmissionNum{difficulty count}}}}","variables":{"u":"'"$U"'"}}')
-            E=$(get_stat "$R" "Easy")
-            M=$(get_stat "$R" "Medium")
-            H=$(get_stat "$R" "Hard")
-            T=$(get_stat "$R" "All")
-            echo "{\"username\":\"$U\",\"easy\":$E,\"medium\":$M,\"hard\":$H,\"total\":$T}"
+              -d "{\"query\":\"query(\$u:String!){matchedUser(username:\$u){submitStats{acSubmissionNum{difficulty count}}}}\",\"variables\":{\"u\":\"$U\"}}")
+
+            # Query 2: submission calendar (unix_timestamp -> submission_count map)
+            R2=$(curl -s -X POST https://leetcode.com/graphql \
+              -H "Content-Type: application/json" \
+              -H "User-Agent: Mozilla/5.0" \
+              -d "{\"query\":\"query(\$u:String!){matchedUser(username:\$u){userCalendar{submissionCalendar streak totalActiveDays}}}\",\"variables\":{\"u\":\"$U\"}}")
+
+            # Merge both responses into one player JSON object
+            python3 << PYEOF
+import json, sys
+
+try:
+    r1 = json.loads("""$R1""")
+    nums = r1['data']['matchedUser']['submitStats']['acSubmissionNum']
+    easy   = next((x['count'] for x in nums if x['difficulty']=='Easy'),   0)
+    medium = next((x['count'] for x in nums if x['difficulty']=='Medium'), 0)
+    hard   = next((x['count'] for x in nums if x['difficulty']=='Hard'),   0)
+    total  = next((x['count'] for x in nums if x['difficulty']=='All'),    0)
+except:
+    easy = medium = hard = total = 0
+
+try:
+    r2 = json.loads("""$R2""")
+    cal_data = r2['data']['matchedUser']['userCalendar']
+    cal      = json.loads(cal_data['submissionCalendar'] or '{}')
+    streak   = cal_data.get('streak', 0)
+    active   = cal_data.get('totalActiveDays', 0)
+except:
+    cal    = {}
+    streak = 0
+    active = 0
+
+print(json.dumps({
+    'username': '$U',
+    'easy':     easy,
+    'medium':   medium,
+    'hard':     hard,
+    'total':    total,
+    'streak':   streak,
+    'activeDays': active,
+    'calendar': cal
+}))
+PYEOF
           }
 
           P1=$(fetch_user "Road_to_500")
@@ -50,21 +73,29 @@ jobs:
           P6=$(fetch_user "kumarvishwansh")
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          cat > data/stats.json << JSONEOF
-          {
-            "lastUpdated": "$TS",
-            "players": [
-              $P1,
-              $P2,
-              $P3,
-              $P4,
-              $P5,
-              $P6
-            ]
-          }
-          JSONEOF
+          # Write final stats.json using Python (avoids shell quoting issues with large JSON)
+          python3 -c "
+import json, sys
 
-          python3 -c "import json; json.load(open('data/stats.json'))" && echo "JSON valid"
+players_json = [
+    '''$P1''',
+    '''$P2''',
+    '''$P3''',
+    '''$P4''',
+    '''$P5''',
+    '''$P6''',
+]
+
+players = [json.loads(p) for p in players_json]
+out = {'lastUpdated': '$TS', 'players': players}
+
+with open('data/stats.json', 'w') as f:
+    json.dump(out, f, indent=2)
+
+# Validate
+json.load(open('data/stats.json'))
+print('JSON valid — players:', len(players))
+"
 
       - name: Commit and push
         run: |
