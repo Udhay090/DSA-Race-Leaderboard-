@@ -10,92 +10,66 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch stats and update JSON
+
+      - name: Write fetch script
         run: |
-          fetch_user() {
-            U=$1
+          cat > /tmp/fetch.py << 'PYEOF'
+          import json, subprocess, sys, datetime
 
-            # Query 1: solved counts per difficulty
-            R1=$(curl -s -X POST https://leetcode.com/graphql \
-              -H "Content-Type: application/json" \
-              -H "User-Agent: Mozilla/5.0" \
-              -d "{\"query\":\"query(\$u:String!){matchedUser(username:\$u){submitStats{acSubmissionNum{difficulty count}}}}\",\"variables\":{\"u\":\"$U\"}}")
+          USERNAMES = [
+              "Road_to_500", "mahijoshii", "kiacoder123",
+              "Leet_samiksha", "SortBhardwaj", "kumarvishwansh",
+          ]
 
-            # Query 2: submission calendar (unix_timestamp -> submission_count map)
-            R2=$(curl -s -X POST https://leetcode.com/graphql \
-              -H "Content-Type: application/json" \
-              -H "User-Agent: Mozilla/5.0" \
-              -d "{\"query\":\"query(\$u:String!){matchedUser(username:\$u){userCalendar{submissionCalendar streak totalActiveDays}}}\",\"variables\":{\"u\":\"$U\"}}")
+          HEADERS = ["-H", "Content-Type: application/json", "-H", "User-Agent: Mozilla/5.0"]
 
-            # Merge both responses into one player JSON object
-            python3 << PYEOF
-import json, sys
+          def graphql(query, variables):
+              payload = json.dumps({"query": query, "variables": variables})
+              r = subprocess.run(
+                  ["curl", "-s", "-X", "POST", "https://leetcode.com/graphql"] + HEADERS + ["-d", payload],
+                  capture_output=True, text=True, timeout=30
+              )
+              return json.loads(r.stdout)
 
-try:
-    r1 = json.loads("""$R1""")
-    nums = r1['data']['matchedUser']['submitStats']['acSubmissionNum']
-    easy   = next((x['count'] for x in nums if x['difficulty']=='Easy'),   0)
-    medium = next((x['count'] for x in nums if x['difficulty']=='Medium'), 0)
-    hard   = next((x['count'] for x in nums if x['difficulty']=='Hard'),   0)
-    total  = next((x['count'] for x in nums if x['difficulty']=='All'),    0)
-except:
-    easy = medium = hard = total = 0
+          Q_STATS = "query($u:String!){matchedUser(username:$u){submitStats{acSubmissionNum{difficulty count}}}}"
+          Q_CAL   = "query($u:String!){matchedUser(username:$u){userCalendar{submissionCalendar streak totalActiveDays}}}"
 
-try:
-    r2 = json.loads("""$R2""")
-    cal_data = r2['data']['matchedUser']['userCalendar']
-    cal      = json.loads(cal_data['submissionCalendar'] or '{}')
-    streak   = cal_data.get('streak', 0)
-    active   = cal_data.get('totalActiveDays', 0)
-except:
-    cal    = {}
-    streak = 0
-    active = 0
+          players = []
+          for u in USERNAMES:
+              print(f"Fetching {u}...")
+              try:
+                  r1   = graphql(Q_STATS, {"u": u})
+                  nums = r1["data"]["matchedUser"]["submitStats"]["acSubmissionNum"]
+                  easy   = next((x["count"] for x in nums if x["difficulty"]=="Easy"),   0)
+                  medium = next((x["count"] for x in nums if x["difficulty"]=="Medium"), 0)
+                  hard   = next((x["count"] for x in nums if x["difficulty"]=="Hard"),   0)
+                  total  = next((x["count"] for x in nums if x["difficulty"]=="All"),    0)
+              except Exception as e:
+                  print(f"  stats error: {e}"); easy=medium=hard=total=0
 
-print(json.dumps({
-    'username': '$U',
-    'easy':     easy,
-    'medium':   medium,
-    'hard':     hard,
-    'total':    total,
-    'streak':   streak,
-    'activeDays': active,
-    'calendar': cal
-}))
-PYEOF
-          }
+              try:
+                  r2       = graphql(Q_CAL, {"u": u})
+                  cd       = r2["data"]["matchedUser"]["userCalendar"]
+                  calendar = json.loads(cd["submissionCalendar"] or "{}")
+                  streak   = cd.get("streak", 0)
+                  active   = cd.get("totalActiveDays", 0)
+              except Exception as e:
+                  print(f"  calendar error: {e}"); calendar={}; streak=0; active=0
 
-          P1=$(fetch_user "Road_to_500")
-          P2=$(fetch_user "mahijoshii")
-          P3=$(fetch_user "kiacoder123")
-          P4=$(fetch_user "Leet_samiksha")
-          P5=$(fetch_user "SortBhardwaj")
-          P6=$(fetch_user "kumarvishwansh")
-          TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+              players.append({"username":u,"easy":easy,"medium":medium,"hard":hard,
+                              "total":total,"streak":streak,"activeDays":active,"calendar":calendar})
+              print(f"  total={total} streak={streak}")
 
-          # Write final stats.json using Python (avoids shell quoting issues with large JSON)
-          python3 -c "
-import json, sys
+          ts  = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+          out = {"lastUpdated": ts, "players": players}
+          with open("data/stats.json","w") as f:
+              json.dump(out, f, indent=2)
+          json.load(open("data/stats.json"))
+          print("OK")
+          PYEOF
 
-players_json = [
-    '''$P1''',
-    '''$P2''',
-    '''$P3''',
-    '''$P4''',
-    '''$P5''',
-    '''$P6''',
-]
-
-players = [json.loads(p) for p in players_json]
-out = {'lastUpdated': '$TS', 'players': players}
-
-with open('data/stats.json', 'w') as f:
-    json.dump(out, f, indent=2)
-
-# Validate
-json.load(open('data/stats.json'))
-print('JSON valid — players:', len(players))
-"
+      - name: Run fetch script
+        run: python3 /tmp/fetch.py
 
       - name: Commit and push
         run: |
