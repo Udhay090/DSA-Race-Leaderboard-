@@ -142,7 +142,6 @@ const DISPLAY = {
   'Leet_samiksha': { name: 'Samiksha', avIdx: 3 },
   'SortBhardwaj' : {name:'Piyush Bhardwaj', avIdx:4},
   'kumarvishwansh' : {name:'vishvansh', avIdx:5},
-  'GyanPrakash7891' : {name:'Gyan prakash', avIdx:6},
 };
 
 let prevStats = {};
@@ -161,8 +160,8 @@ function renderBoard(players, lastUpdated) {
   const sorted = [...players].sort((a, b) => b.total - a.total);
   const maxTotal = Math.max(1, ...players.map(p => p.total));
   
-  const rankClass = ['r1', 'r2', 'r3', 'r4','r5','r6','r7'];
-  const rankLabels = ['01', '02', '03','04','05','06','LAST'];
+  const rankClass = ['r1', 'r2', 'r3', 'r4','r5','r6'];
+  const rankLabels = ['01', '02', '03','04','05','LAST'];
 
   document.getElementById('board').innerHTML = sorted.map((p, i) => {
     const d = DISPLAY[p.username] || { name: p.username, avIdx: i };
