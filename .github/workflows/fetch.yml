@@ -43,6 +43,8 @@ jobs:
           P2=$(fetch_user "mahijoshii")
           P3=$(fetch_user "kiacoder123")
           P4=$(fetch_user "Leet_samiksha")
+          P5=$(fetch_user "SortBhardwaj")
+          P6=$(fetch_user "kumarvishwansh")
           TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
           cat > data/stats.json << JSONEOF
@@ -52,7 +54,9 @@ jobs:
               $P1,
               $P2,
               $P3,
-              $P4
+              $P4,
+              $P5,
+              $P6
             ]
           }
           JSONEOF
