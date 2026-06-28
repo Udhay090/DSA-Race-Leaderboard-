@@ -38,12 +38,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 
 .page{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem}
 
+/* ── HERO ── */
 .hero{text-align:center;padding:3rem 0 2.5rem;border-bottom:0.5px solid var(--border);margin-bottom:2rem}
 .wordmark{font-family:var(--mono);font-size:52px;font-weight:700;letter-spacing:-2px;color:var(--text);line-height:1}
 .wordmark span{color:var(--purple)}
 .tagline{font-size:11px;letter-spacing:0.15em;color:var(--muted);margin-top:10px;text-transform:uppercase;font-family:var(--mono)}
 .race-bar{width:48px;height:2px;background:var(--purple);margin:12px auto 0}
 
+/* ── TOP BAR ── */
 .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
 .live-badge{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--teal);font-family:var(--mono);background:#085041;padding:4px 10px;border-radius:99px;border:0.5px solid var(--teal-dim)}
 .live-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 1.4s ease infinite}
@@ -51,8 +53,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .refresh-btn{font-family:var(--mono);font-size:11px;background:transparent;border:0.5px solid var(--border2);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.15s}
 .refresh-btn:hover{border-color:var(--purple);color:var(--purple)}
 .refresh-btn svg{width:12px;height:12px}
-.ts{font-size:10px;color:var(--hint);font-family:var(--mono)}
 
+/* ── PLAYER CARD ── */
 .board{display:flex;flex-direction:column;gap:10px}
 
 .pcard{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;position:relative;overflow:hidden;transition:border-color 0.2s}
@@ -62,12 +64,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .pcard.r3::before{background:var(--bronze)}
 .pcard:hover{border-color:var(--border2)}
 
-.row1{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.row1{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .rank{font-family:var(--mono);font-size:10px;color:var(--hint);width:18px;text-align:center;flex-shrink:0}
 .av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;font-family:var(--mono);flex-shrink:0}
 .av0{background:var(--purple-dim);color:#afa9ec}
 .av1{background:var(--teal-dim);color:#5dcaa5}
 .av2{background:var(--coral-dim);color:#f0997b}
+.av3{background:#1a1a24;color:#6b6b80}
+.av4{background:#2a1a2e;color:#c084fc}
+.av5{background:#1a2a2a;color:#67e8f9}
 .pinfo{flex:1;min-width:0}
 .pname{font-size:14px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .phandle{font-size:11px;color:var(--muted);font-family:var(--mono)}
@@ -75,29 +80,86 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 .pscore-num{font-size:28px;font-weight:700;font-family:var(--mono);color:var(--text);line-height:1}
 .pscore-lbl{font-size:10px;color:var(--hint);font-family:var(--mono)}
 
+/* ── DIFF BOXES ── */
 .diff-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
 .dbox{background:var(--surface2);border-radius:8px;padding:7px 10px;border:0.5px solid var(--border)}
 .dlbl{font-size:10px;color:var(--hint);font-family:var(--mono);margin-bottom:3px}
 .dval{font-size:16px;font-weight:700;font-family:var(--mono)}
 .easy{color:var(--easy)}.medium{color:var(--medium)}.hard{color:var(--hard)}
 
+/* ── PROGRESS BAR ── */
 .pb-wrap{margin-bottom:8px}
 .pb-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--hint);font-family:var(--mono);margin-bottom:4px}
 .pb-track{height:3px;background:var(--hint);border-radius:2px;overflow:hidden}
 .pb-fill{height:100%;border-radius:2px;transition:width 0.8s ease}
 .fill0{background:var(--purple)}.fill1{background:var(--teal)}.fill2{background:var(--coral)}
+.fill3{background:#6b6b80}.fill4{background:#c084fc}.fill5{background:#67e8f9}
 
+/* ── STREAK ROW ── */
+.streak-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.streak-badge{font-size:11px;font-family:var(--mono);padding:3px 8px;border-radius:6px;background:#2a1a0a;border:0.5px solid #5a3a10;color:#ef9f27;display:flex;align-items:center;gap:4px}
+.streak-badge.cold{background:var(--surface2);border-color:var(--border);color:var(--hint)}
+.longest-badge{font-size:10px;font-family:var(--mono);color:var(--hint)}
+
+/* ── ACTIVITY ROW (1d / 1w / 1m) ── */
+.activity-row{display:flex;gap:6px;margin-bottom:10px}
+.abox{flex:1;background:var(--surface2);border:0.5px solid var(--border);border-radius:6px;padding:5px 8px;text-align:center}
+.abox-lbl{font-size:9px;color:var(--hint);font-family:var(--mono);margin-bottom:2px}
+.abox-val{font-size:14px;font-weight:700;font-family:var(--mono);color:var(--text)}
+.abox-val.active{color:var(--teal)}
+
+/* ── STATUS ROW ── */
 .st-row{display:flex;align-items:center;gap:5px}
 .st-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .ok{background:var(--teal)}.err{background:#e24b4a}.idle{background:var(--hint)}
 .st-txt{font-size:10px;color:var(--hint);font-family:var(--mono)}
 
+/* ── DELTA BADGE ── */
 .delta-badge{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:99px;margin-left:6px}
 .delta-up{background:#085041;color:#5dcaa5}
 .delta-zero{background:var(--surface2);color:var(--hint)}
 
+/* ── HEATMAP TOGGLE ── */
+.heatmap-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border);font-size:10px;color:var(--muted);font-family:var(--mono);user-select:none;transition:color 0.15s}
+.heatmap-toggle:hover{color:var(--purple)}
+.toggle-arrow{transition:transform 0.2s;font-size:9px}
+.toggle-arrow.open{transform:rotate(180deg)}
+
+/* ── HEATMAP GRID ── */
+.heatmap-wrap{overflow:hidden;max-height:0;transition:max-height 0.3s ease}
+.heatmap-wrap.open{max-height:200px}
+.heatmap-inner{padding-top:10px;overflow-x:auto}
+.heatmap-month-labels{display:flex;gap:0;margin-bottom:3px;padding-left:18px}
+.heatmap-month-label{font-size:9px;color:var(--hint);font-family:var(--mono);flex:1;min-width:0}
+.heatmap-grid{display:flex;gap:3px;align-items:flex-start}
+.heatmap-day-labels{display:flex;flex-direction:column;gap:3px;margin-right:4px}
+.heatmap-day-label{font-size:8px;color:var(--hint);font-family:var(--mono);height:10px;line-height:10px}
+.heatmap-weeks{display:flex;gap:3px}
+.heatmap-week{display:flex;flex-direction:column;gap:3px}
+.heatmap-cell{width:10px;height:10px;border-radius:2px;background:var(--surface2)}
+.h0{background:#1a1a24}
+.h1{background:#1a3a2a}
+.h2{background:#1d7050}
+.h3{background:#1d9e75}
+.h4{background:#4dcca0}
+.heatmap-legend{display:flex;align-items:center;gap:4px;margin-top:6px;justify-content:flex-end}
+.heatmap-legend span{font-size:9px;color:var(--hint);font-family:var(--mono)}
+.legend-cell{width:9px;height:9px;border-radius:1px}
+
+/* ── PROGRESS GRAPH ── */
+.graph-section{margin-top:2rem;margin-bottom:2rem}
+.graph-title{font-size:11px;color:var(--muted);font-family:var(--mono);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.graph-title::after{content:'';flex:1;height:0.5px;background:var(--border)}
+.graph-wrap{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:1rem}
+.graph-svg{width:100%;height:160px;overflow:visible}
+.graph-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted);font-family:var(--mono)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+
+/* ── FOOTER ── */
 .updated-row{text-align:center;margin-top:2rem;font-size:11px;color:var(--hint);font-family:var(--mono)}
 
+/* ── ANIMATIONS ── */
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .spinning{animation:spin 0.9s linear infinite}
 
@@ -109,7 +171,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 
   <div class="hero">
     <div class="wordmark">DSA<span>/</span>RACE</div>
-    <div class="tagline">leetcode leaderboard &nbsp;·&nbsp; Udhay · Mahi · kia . Samiksha </div>
+    <div class="tagline">leetcode leaderboard &nbsp;·&nbsp; Udhay · Mahi · Kia · Samiksha</div>
     <div class="race-bar"></div>
   </div>
 
@@ -119,7 +181,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
       <span id="live-txt">loading</span>
     </div>
     <button class="refresh-btn" onclick="loadStats()">
-      <svg id="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+      <svg id="ri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+        <path d="M21 3v5h-5"/>
+        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+        <path d="M8 16H3v5"/>
+      </svg>
       refresh
     </button>
   </div>
@@ -128,55 +195,388 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
     <div class="error-state">fetching stats...</div>
   </div>
 
+  <!-- Progress graph rendered below the leaderboard -->
+  <div class="graph-section" id="graph-section" style="display:none">
+    <div class="graph-title">30-day progress</div>
+    <div class="graph-wrap">
+      <svg class="graph-svg" id="progress-svg" viewBox="0 0 600 160" preserveAspectRatio="none"></svg>
+      <div class="graph-legend" id="graph-legend"></div>
+    </div>
+  </div>
+
   <div class="updated-row" id="updated-row"></div>
 
 </div>
 
 <script>
+// ─────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────
 const STATS_URL = 'https://raw.githubusercontent.com/Udhay090/DSA-Race-Leaderboard-/main/data/stats.json';
 
+// Display metadata keyed by LeetCode username
 const DISPLAY = {
-  'Road_to_500':   { name: 'Udhay',  avIdx: 0 },
-  'mahijoshii':  { name: 'Mahi',   avIdx: 1 },
-  'kiacoder123': { name: 'Kia',    avIdx: 2 },
-  'Leet_samiksha': { name: 'Samiksha', avIdx: 3 },
-  'SortBhardwaj' : {name:'Piyush Bhardwaj', avIdx:4},
-  'kumarvishwansh' : {name:'vishvansh', avIdx:5},
+  'Road_to_500':   { name: 'Udhay',            avIdx: 0 },
+  'mahijoshii':    { name: 'Mahi',             avIdx: 1 },
+  'kiacoder123':   { name: 'Kia',              avIdx: 2 },
+  'Leet_samiksha': { name: 'Samiksha',         avIdx: 3 },
+  'SortBhardwaj':  { name: 'Piyush Bhardwaj', avIdx: 4 },
+  'kumarvishwansh':{ name: 'Vishvansh',        avIdx: 5 },
 };
 
+// Colors per player index — used for graph lines + legend dots
+const PLAYER_COLORS = ['#7f77dd','#1d9e75','#d85a30','#6b6b80','#c084fc','#67e8f9'];
+
+// Tracks previous totals to show delta badges
 let prevStats = {};
 
+// ─────────────────────────────────────────────
+// UTILITY HELPERS
+// ─────────────────────────────────────────────
+
+/** Get initials from a display name */
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
 }
 
+/** Delta vs previous load */
 function delta(username, total) {
   const prev = prevStats[username];
-  if (prev === undefined) return null;
-  return total - prev;
+  return prev === undefined ? null : total - prev;
 }
+
+/**
+ * Parse submissionCalendar into a lookup: dateStr (YYYY-MM-DD) -> count
+ * The calendar is an object like { "1719532800": 3, "1719619200": 1, ... }
+ * Keys are Unix timestamps (seconds, UTC midnight).
+ */
+function parseCalendar(cal) {
+  const map = {};
+  if (!cal) return map;
+  for (const [ts, count] of Object.entries(cal)) {
+    const d = new Date(parseInt(ts) * 1000);
+    // Format as YYYY-MM-DD in UTC
+    const key = d.toISOString().slice(0, 10);
+    map[key] = (map[key] || 0) + count;
+  }
+  return map;
+}
+
+/**
+ * Count submissions in a window ending today.
+ * windowDays: 1 = today only, 7 = last 7 days, 30 = last 30 days
+ */
+function countInWindow(calMap, windowDays) {
+  const now = Date.now();
+  let total = 0;
+  for (let i = 0; i < windowDays; i++) {
+    const d = new Date(now - i * 86400000);
+    const key = d.toISOString().slice(0, 10);
+    total += calMap[key] || 0;
+  }
+  return total;
+}
+
+/**
+ * Compute current streak (consecutive days with ≥1 submission ending today or yesterday).
+ * We check from today backwards. If today has submissions, count from today.
+ * If yesterday has submissions (but not today), count from yesterday.
+ * Returns 0 if neither.
+ *
+ * Note: LeetCode's API already returns streak directly. We use the API value
+ * when available, but this function is a fallback.
+ */
+function computeStreak(calMap) {
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const yesterStr = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+
+  // If neither today nor yesterday has submissions, streak is 0
+  if (!calMap[todayStr] && !calMap[yesterStr]) return 0;
+
+  let streak = 0;
+  // Start from today if active, else from yesterday
+  const startOffset = calMap[todayStr] ? 0 : 1;
+
+  for (let i = startOffset; i < 400; i++) {
+    const key = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+    if (calMap[key]) {
+      streak++;
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+// ─────────────────────────────────────────────
+// HEATMAP BUILDER
+// ─────────────────────────────────────────────
+
+/**
+ * Build a GitHub-style contribution heatmap for the last 26 weeks (182 days).
+ * Returns an HTML string to inject into the card.
+ *
+ * Layout:
+ *   - Each column = 1 week (Sun → Sat), 7 cells tall
+ *   - 26 columns = ~6 months
+ *   - Cell color: h0 (empty) → h4 (most active)
+ */
+function buildHeatmap(calMap, avIdx) {
+  const WEEKS = 26;
+  const today = new Date();
+  // Align to the most recent Saturday so the last column ends today
+  const dayOfWeek = today.getDay(); // 0=Sun, 6=Sat
+
+  // Go back to last Sunday as our grid end-anchor
+  // We want 26 full weeks. Start from 26*7 days ago, snapped to Sunday.
+  const totalDays = WEEKS * 7;
+  // Find the Sunday that starts our grid
+  const gridStart = new Date(today);
+  gridStart.setDate(today.getDate() - dayOfWeek - (WEEKS - 1) * 7);
+
+  // Find max count for color scaling
+  let maxCount = 1;
+  for (let i = 0; i < totalDays; i++) {
+    const d = new Date(gridStart);
+    d.setDate(gridStart.getDate() + i);
+    const key = d.toISOString().slice(0, 10);
+    if ((calMap[key] || 0) > maxCount) maxCount = calMap[key];
+  }
+
+  // Build weeks array: weeks[w][d] = { key, count }
+  const weeks = [];
+  for (let w = 0; w < WEEKS; w++) {
+    const week = [];
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(gridStart);
+      date.setDate(gridStart.getDate() + w * 7 + d);
+      const key = date.toISOString().slice(0, 10);
+      week.push({ key, count: calMap[key] || 0, date });
+    }
+    weeks.push(week);
+  }
+
+  // Month labels — one label per month boundary in the grid
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const monthLabels = [];
+  let lastMonth = -1;
+  weeks.forEach((week, wi) => {
+    const m = week[0].date.getMonth();
+    if (m !== lastMonth) {
+      monthLabels.push({ wi, label: monthNames[m] });
+      lastMonth = m;
+    } else {
+      monthLabels.push(null);
+    }
+  });
+
+  // Color intensity: 0=empty, 1-4 based on count vs max
+  function cellClass(count) {
+    if (count === 0) return 'h0';
+    const ratio = count / maxCount;
+    if (ratio < 0.25) return 'h1';
+    if (ratio < 0.5)  return 'h2';
+    if (ratio < 0.75) return 'h3';
+    return 'h4';
+  }
+
+  // Month label row
+  const monthRow = monthLabels.map(ml =>
+    `<div class="heatmap-month-label">${ml ? ml.label : ''}</div>`
+  ).join('');
+
+  // Day label column (only Mon, Wed, Fri to avoid clutter)
+  const dayLabels = ['S','M','T','W','T','F','S'];
+  const dayLabelHtml = dayLabels.map((l, i) =>
+    `<div class="heatmap-day-label">${[1,3,5].includes(i) ? l : ''}</div>`
+  ).join('');
+
+  // Grid weeks
+  const weeksHtml = weeks.map(week => {
+    const cells = week.map(({ key, count, date }) => {
+      const title = `${key}: ${count} submission${count !== 1 ? 's' : ''}`;
+      return `<div class="heatmap-cell ${cellClass(count)}" title="${title}"></div>`;
+    }).join('');
+    return `<div class="heatmap-week">${cells}</div>`;
+  }).join('');
+
+  // Legend
+  const legendHtml = `
+    <div class="heatmap-legend">
+      <span>less</span>
+      <div class="legend-cell h0"></div>
+      <div class="legend-cell h1"></div>
+      <div class="legend-cell h2"></div>
+      <div class="legend-cell h3"></div>
+      <div class="legend-cell h4"></div>
+      <span>more</span>
+    </div>`;
+
+  return `
+    <div class="heatmap-inner">
+      <div class="heatmap-month-labels">${monthRow}</div>
+      <div class="heatmap-grid">
+        <div class="heatmap-day-labels">${dayLabelHtml}</div>
+        <div class="heatmap-weeks">${weeksHtml}</div>
+      </div>
+      ${legendHtml}
+    </div>`;
+}
+
+// ─────────────────────────────────────────────
+// PROGRESS GRAPH BUILDER
+// ─────────────────────────────────────────────
+
+/**
+ * Renders an SVG line chart showing each player's cumulative submissions
+ * over the last 30 days. Uses the submissionCalendar data.
+ *
+ * Approach:
+ *   1. Build a list of the last 30 date strings
+ *   2. For each player, build a running cumulative sum per day
+ *   3. Normalize all values into the SVG viewBox (600×160)
+ *   4. Draw polylines per player + axis labels
+ */
+function renderProgressGraph(players) {
+  const SVG_W = 600, SVG_H = 140;
+  const PAD = { top: 10, right: 10, bottom: 24, left: 30 };
+  const plotW = SVG_W - PAD.left - PAD.right;
+  const plotH = SVG_H - PAD.top - PAD.bottom;
+  const DAYS = 30;
+
+  // Build date list: oldest first
+  const dates = [];
+  for (let i = DAYS - 1; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400000);
+    dates.push(d.toISOString().slice(0, 10));
+  }
+
+  // For each player, compute daily submission counts then cumulative
+  const series = players.map(p => {
+    const calMap = parseCalendar(p.calendar || {});
+    let cum = 0;
+    return dates.map(date => {
+      cum += calMap[date] || 0;
+      return cum;
+    });
+  });
+
+  // Find global max for Y-axis scaling
+  const allVals = series.flat();
+  const maxVal = Math.max(1, ...allVals);
+
+  // Map data coords to SVG coords
+  const xScale = i => PAD.left + (i / (DAYS - 1)) * plotW;
+  const yScale = v => PAD.top + plotH - (v / maxVal) * plotH;
+
+  // Draw horizontal grid lines
+  const gridLines = [0, 0.25, 0.5, 0.75, 1].map(frac => {
+    const y = PAD.top + plotH * (1 - frac);
+    const val = Math.round(frac * maxVal);
+    return `
+      <line x1="${PAD.left}" y1="${y}" x2="${SVG_W - PAD.right}" y2="${y}"
+            stroke="#ffffff08" stroke-width="1"/>
+      <text x="${PAD.left - 4}" y="${y + 3}" fill="#3d3d50"
+            font-size="8" font-family="JetBrains Mono,monospace" text-anchor="end">${val}</text>`;
+  }).join('');
+
+  // Draw X-axis date labels (every ~7 days)
+  const xLabels = dates.map((date, i) => {
+    if (i % 7 !== 0 && i !== DAYS - 1) return '';
+    const label = date.slice(5); // MM-DD
+    return `<text x="${xScale(i)}" y="${SVG_H - 4}" fill="#3d3d50"
+                  font-size="8" font-family="JetBrains Mono,monospace" text-anchor="middle">${label}</text>`;
+  }).join('');
+
+  // Draw one polyline per player
+  const lines = series.map((vals, pi) => {
+    const d = DISPLAY[players[pi].username];
+    if (!d) return '';
+    const points = vals.map((v, i) => `${xScale(i)},${yScale(v)}`).join(' ');
+    const color = PLAYER_COLORS[d.avIdx];
+    return `<polyline points="${points}" fill="none" stroke="${color}"
+                      stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>`;
+  }).join('');
+
+  // Endpoint dots
+  const dots = series.map((vals, pi) => {
+    const d = DISPLAY[players[pi].username];
+    if (!d) return '';
+    const lastVal = vals[vals.length - 1];
+    const color = PLAYER_COLORS[d.avIdx];
+    return `<circle cx="${xScale(DAYS-1)}" cy="${yScale(lastVal)}" r="3"
+                     fill="${color}" stroke="var(--bg)" stroke-width="1.5"/>`;
+  }).join('');
+
+  document.getElementById('progress-svg').innerHTML =
+    `${gridLines}${xLabels}${lines}${dots}`;
+
+  // Legend
+  document.getElementById('graph-legend').innerHTML = players.map(p => {
+    const d = DISPLAY[p.username];
+    if (!d) return '';
+    const color = PLAYER_COLORS[d.avIdx];
+    return `<div class="legend-item">
+      <div class="legend-dot" style="background:${color}"></div>
+      <span>${d.name}</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('graph-section').style.display = 'block';
+}
+
+// ─────────────────────────────────────────────
+// CARD RENDERER
+// ─────────────────────────────────────────────
 
 function renderBoard(players, lastUpdated) {
   const sorted = [...players].sort((a, b) => b.total - a.total);
   const maxTotal = Math.max(1, ...players.map(p => p.total));
-  
-  const rankClass = ['r1', 'r2', 'r3', 'r4','r5','r6'];
-  const rankLabels = ['01', '02', '03','04','05','LAST'];
+
+  const rankClass  = ['r1','r2','r3','','',''];
+  const rankLabels = ['01','02','03','04','05','06'];
 
   document.getElementById('board').innerHTML = sorted.map((p, i) => {
-    const d = DISPLAY[p.username] || { name: p.username, avIdx: i };
+    const d = DISPLAY[p.username] || { name: p.username, avIdx: i % 6 };
     const pct = Math.round((p.total / maxTotal) * 100);
+
+    // Delta badge
     const dv = delta(p.username, p.total);
     const deltaHtml = dv !== null
       ? `<span class="delta-badge ${dv > 0 ? 'delta-up' : 'delta-zero'}">${dv > 0 ? '+' : ''}${dv}</span>`
       : '';
+
+    // Calendar-based stats
+    const calMap = parseCalendar(p.calendar || {});
+
+    // Streak — prefer API value, fall back to computed
+    const streak = p.streak !== undefined ? p.streak : computeStreak(calMap);
+
+    // Activity counts
+    const cnt1d  = countInWindow(calMap, 1);
+    const cnt7d  = countInWindow(calMap, 7);
+    const cnt30d = countInWindow(calMap, 30);
+
+    // Streak badge
+    const streakHtml = streak > 0
+      ? `<span class="streak-badge">🔥 ${streak}d streak</span>`
+      : `<span class="streak-badge cold">no streak</span>`;
+
+    const longestHtml = p.activeDays
+      ? `<span class="longest-badge">${p.activeDays} active days</span>`
+      : '';
+
+    // Heatmap (built but hidden until toggled)
+    const heatmapHtml = buildHeatmap(calMap, d.avIdx);
+    const heatmapId = `hm-${p.username}`;
+    const arrowId   = `arr-${p.username}`;
 
     return `<div class="pcard ${rankClass[i]}">
       <div class="row1">
         <span class="rank">${rankLabels[i]}</span>
         <div class="av av${d.avIdx}">${initials(d.name)}</div>
         <div class="pinfo">
-          <div class="pname">${d.name} ${deltaHtml}</div>
+          <div class="pname">${d.name}${deltaHtml}</div>
           <div class="phandle">@${p.username}</div>
         </div>
         <div class="pscore">
@@ -184,26 +584,69 @@ function renderBoard(players, lastUpdated) {
           <div class="pscore-lbl">solved</div>
         </div>
       </div>
+
       <div class="diff-row">
         <div class="dbox"><div class="dlbl">easy</div><div class="dval easy">${p.easy}</div></div>
         <div class="dbox"><div class="dlbl">medium</div><div class="dval medium">${p.medium}</div></div>
         <div class="dbox"><div class="dlbl">hard</div><div class="dval hard">${p.hard}</div></div>
       </div>
+
+      <div class="streak-row">
+        ${streakHtml}
+        ${longestHtml}
+      </div>
+
+      <div class="activity-row">
+        <div class="abox">
+          <div class="abox-lbl">today</div>
+          <div class="abox-val ${cnt1d > 0 ? 'active' : ''}">${cnt1d}</div>
+        </div>
+        <div class="abox">
+          <div class="abox-lbl">7 days</div>
+          <div class="abox-val ${cnt7d > 0 ? 'active' : ''}">${cnt7d}</div>
+        </div>
+        <div class="abox">
+          <div class="abox-lbl">30 days</div>
+          <div class="abox-val ${cnt30d > 0 ? 'active' : ''}">${cnt30d}</div>
+        </div>
+      </div>
+
       <div class="pb-wrap">
         <div class="pb-meta"><span>vs leader</span><span>${pct}%</span></div>
         <div class="pb-track"><div class="pb-fill fill${d.avIdx}" style="width:${pct}%"></div></div>
       </div>
-      <div class="st-row">
-        <div class="st-dot ok"></div>
-        <span class="st-txt">synced</span>
+
+      <div class="heatmap-toggle" onclick="toggleHeatmap('${heatmapId}','${arrowId}')">
+        <span>📅 activity heatmap</span>
+        <span class="toggle-arrow" id="${arrowId}">▼</span>
+      </div>
+      <div class="heatmap-wrap" id="${heatmapId}">
+        ${heatmapHtml}
       </div>
     </div>`;
   }).join('');
 
+  // Footer timestamp
   const dt = new Date(lastUpdated);
   document.getElementById('updated-row').textContent =
-    `last fetched from leetcode · ${dt.toLocaleDateString('en-IN', {day:'numeric',month:'short'})} at ${dt.toLocaleTimeString('en-IN', {hour:'2-digit',minute:'2-digit'})}`;
+    `last fetched from leetcode · ${dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'})} at ${dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`;
 }
+
+// ─────────────────────────────────────────────
+// HEATMAP TOGGLE
+// ─────────────────────────────────────────────
+
+function toggleHeatmap(wrapId, arrowId) {
+  const wrap  = document.getElementById(wrapId);
+  const arrow = document.getElementById(arrowId);
+  const isOpen = wrap.classList.contains('open');
+  wrap.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+// ─────────────────────────────────────────────
+// DATA LOADER
+// ─────────────────────────────────────────────
 
 async function loadStats() {
   const ri = document.getElementById('ri');
@@ -215,8 +658,12 @@ async function loadStats() {
     if (!res.ok) throw new Error('fetch failed');
     const data = await res.json();
 
+    // Save current totals as "previous" for next refresh delta
     data.players.forEach(p => { prevStats[p.username] = p.total; });
+
     renderBoard(data.players, data.lastUpdated);
+    renderProgressGraph(data.players);
+
     document.getElementById('live-txt').textContent = 'live';
   } catch (e) {
     document.getElementById('board').innerHTML =
