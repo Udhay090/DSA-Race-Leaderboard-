@@ -226,7 +226,7 @@ const DISPLAY = {
 };
 
 // Colors per player index — used for graph lines + legend dots
-const PLAYER_COLORS = ['#7f77dd','#1d9e75','#d85a30','#6b6b80','#c084fc','#67e8f9'];
+const PLAYER_COLORS = ['#7f77dd','#1d9e75','#d85a30','#6b6b80','#c084fc','#67e8f9','#780606'];
 
 // Tracks previous totals to show delta badges
 let prevStats = {};
@@ -534,8 +534,8 @@ function renderBoard(players, lastUpdated) {
   const sorted = [...players].sort((a, b) => b.total - a.total);
   const maxTotal = Math.max(1, ...players.map(p => p.total));
 
-  const rankClass  = ['r1','r2','r3','','',''];
-  const rankLabels = ['01','02','03','04','05','06'];
+  const rankClass  = ['r1','r2','r3','','','',''];
+  const rankLabels = ['01','02','03','04','05','06','07'];
 
   document.getElementById('board').innerHTML = sorted.map((p, i) => {
     const d = DISPLAY[p.username] || { name: p.username, avIdx: i % 6 };
