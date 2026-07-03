@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-07-03T09:26:16Z",
+  "lastUpdated": "2026-07-03T14:19:27Z",
   "players": [
     {
       "username": "Road_to_500",
       "easy": 47,
-      "medium": 71,
+      "medium": 72,
       "hard": 2,
-      "total": 120,
+      "total": 121,
       "streak": 21,
       "activeDays": 81,
       "calendar": {
@@ -90,7 +90,7 @@
         "1782777600": 3,
         "1782864000": 27,
         "1782950400": 8,
-        "1783036800": 2
+        "1783036800": 4
       }
     },
     {
