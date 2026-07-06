@@ -1,24 +1,24 @@
 {
-  "lastUpdated": "2026-07-06T15:42:50Z",
+  "lastUpdated": "2026-07-06T20:04:24Z",
   "players": [
     {
       "username": "Road_to_500",
-      "easy": 48,
+      "easy": 49,
       "medium": 72,
       "hard": 3,
-      "total": 123,
+      "total": 124,
       "streak": 0,
       "activeDays": 0,
       "calendar": {}
     },
     {
       "username": "mahijoshii",
-      "easy": 23,
+      "easy": 24,
       "medium": 35,
       "hard": 3,
-      "total": 61,
-      "streak": 14,
-      "activeDays": 23,
+      "total": 62,
+      "streak": 15,
+      "activeDays": 24,
       "calendar": {
         "1778284800": 10,
         "1778371200": 15,
@@ -42,17 +42,18 @@
         "1783036800": 9,
         "1783123200": 3,
         "1783209600": 9,
+        "1783296000": 1,
         "1757721600": 1
       }
     },
     {
       "username": "kiacoder123",
-      "easy": 71,
-      "medium": 72,
+      "easy": 73,
+      "medium": 73,
       "hard": 8,
-      "total": 151,
+      "total": 154,
       "streak": 6,
-      "activeDays": 73,
+      "activeDays": 74,
       "calendar": {
         "1767398400": 2,
         "1767484800": 1,
@@ -114,6 +115,7 @@
         "1783036800": 19,
         "1783123200": 14,
         "1783209600": 35,
+        "1783296000": 6,
         "1753228800": 2,
         "1753315200": 1,
         "1753401600": 3,
