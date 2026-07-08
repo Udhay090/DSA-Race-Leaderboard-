@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-07-08T14:25:48Z",
+  "lastUpdated": "2026-07-08T17:55:58Z",
   "players": [
     {
       "username": "Road_to_500",
       "easy": 49,
-      "medium": 73,
+      "medium": 75,
       "hard": 3,
-      "total": 125,
+      "total": 127,
       "streak": 0,
       "activeDays": 0,
       "calendar": {}
@@ -162,9 +162,9 @@
     {
       "username": "SortBhardwaj",
       "easy": 68,
-      "medium": 162,
+      "medium": 163,
       "hard": 29,
-      "total": 259,
+      "total": 260,
       "streak": 9,
       "activeDays": 118,
       "calendar": {
@@ -242,7 +242,7 @@
         "1783209600": 1,
         "1783296000": 1,
         "1783382400": 1,
-        "1783468800": 3,
+        "1783468800": 9,
         "1752278400": 5,
         "1752451200": 4,
         "1752796800": 1,
