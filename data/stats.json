@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-22T19:27:03Z",
+  "lastUpdated": "2026-07-23T03:20:25Z",
   "players": [
     {
       "username": "Road_to_500",
@@ -13,12 +13,12 @@
     },
     {
       "username": "mahijoshii",
-      "easy": 49,
-      "medium": 44,
+      "easy": 53,
+      "medium": 46,
       "hard": 3,
-      "total": 96,
+      "total": 102,
       "streak": 20,
-      "activeDays": 35,
+      "activeDays": 36,
       "calendar": {
         "1778284800": 10,
         "1778371200": 15,
@@ -54,6 +54,7 @@
         "1784505600": 4,
         "1784592000": 9,
         "1784678400": 10,
+        "1784764800": 10,
         "1757721600": 1
       }
     },
