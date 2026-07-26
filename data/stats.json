@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-26T03:25:53Z",
+  "lastUpdated": "2026-07-26T08:32:40Z",
   "players": [
     {
       "username": "Road_to_500",
@@ -255,12 +255,12 @@
     },
     {
       "username": "Leet_samiksha",
-      "easy": 44,
+      "easy": 46,
       "medium": 3,
       "hard": 1,
-      "total": 48,
+      "total": 50,
       "streak": 7,
-      "activeDays": 25,
+      "activeDays": 26,
       "calendar": {
         "1768176000": 1,
         "1768262400": 1,
@@ -284,6 +284,7 @@
         "1784505600": 2,
         "1784764800": 1,
         "1784851200": 5,
+        "1785024000": 4,
         "1765670400": 4,
         "1766102400": 6,
         "1766188800": 3
@@ -947,10 +948,10 @@
     },
     {
       "username": "Anky_leet",
-      "easy": 164,
-      "medium": 195,
+      "easy": 165,
+      "medium": 197,
       "hard": 34,
-      "total": 393,
+      "total": 396,
       "streak": 90,
       "activeDays": 222,
       "calendar": {
