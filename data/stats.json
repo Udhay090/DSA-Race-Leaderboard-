@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-18T06:50:45Z",
+  "lastUpdated": "2026-08-18T12:53:59Z",
   "players": [
     {
       "username": "Road_to_500",
@@ -183,10 +183,10 @@
     },
     {
       "username": "kiacoder123",
-      "easy": 0,
-      "medium": 0,
-      "hard": 0,
-      "total": 0,
+      "easy": 115,
+      "medium": 96,
+      "hard": 11,
+      "total": 222,
       "streak": 21,
       "activeDays": 104,
       "calendar": {
@@ -347,12 +347,12 @@
     },
     {
       "username": "SortBhardwaj",
-      "easy": 76,
+      "easy": 77,
       "medium": 179,
       "hard": 37,
-      "total": 292,
-      "streak": 14,
-      "activeDays": 132,
+      "total": 293,
+      "streak": 15,
+      "activeDays": 133,
       "calendar": {
         "1767484800": 5,
         "1767744000": 9,
@@ -448,6 +448,7 @@
         "1786752000": 2,
         "1786838400": 4,
         "1786924800": 1,
+        "1787011200": 2,
         "1755734400": 12,
         "1755820800": 4,
         "1755907200": 19,
