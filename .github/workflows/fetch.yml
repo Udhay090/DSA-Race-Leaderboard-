@@ -17,7 +17,7 @@ jobs:
           import json, subprocess, sys, datetime
 
           USERNAMES = [
-              "Road_to_500", "mahijoshii", "kiacoder123",
+              "Udhay_dev", "mahijoshii", "kiacoder123",
               "Leet_samiksha", "SortBhardwaj", "kumarvishwansh","abisheksalaria","Anky_leet"
           ]
 
