@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-05T04:54:43Z",
+  "lastUpdated": "2026-10-05T14:06:35Z",
   "players": [
     {
       "username": "Udhay_dev",
@@ -303,11 +303,11 @@
     {
       "username": "Leet_samiksha",
       "easy": 88,
-      "medium": 33,
+      "medium": 34,
       "hard": 1,
-      "total": 122,
+      "total": 123,
       "streak": 7,
-      "activeDays": 54,
+      "activeDays": 55,
       "calendar": {
         "1768176000": 1,
         "1768262400": 1,
@@ -360,6 +360,7 @@
         "1790726400": 6,
         "1790812800": 3,
         "1791072000": 7,
+        "1791158400": 1,
         "1765670400": 4,
         "1766102400": 6,
         "1766188800": 3
@@ -504,10 +505,10 @@
     },
     {
       "username": "kumarvishwansh",
-      "easy": 105,
-      "medium": 162,
-      "hard": 38,
-      "total": 305,
+      "easy": 0,
+      "medium": 0,
+      "hard": 0,
+      "total": 0,
       "streak": 52,
       "activeDays": 199,
       "calendar": {
