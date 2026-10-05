@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-05T14:06:35Z",
+  "lastUpdated": "2026-10-05T23:53:58Z",
   "players": [
     {
       "username": "Udhay_dev",
@@ -505,10 +505,10 @@
     },
     {
       "username": "kumarvishwansh",
-      "easy": 0,
-      "medium": 0,
-      "hard": 0,
-      "total": 0,
+      "easy": 105,
+      "medium": 162,
+      "hard": 38,
+      "total": 305,
       "streak": 52,
       "activeDays": 199,
       "calendar": {
