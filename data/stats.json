@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-10-21T11:27:15Z",
+  "lastUpdated": "2026-10-21T16:54:40Z",
   "players": [
     {
       "username": "Udhay_dev",
       "easy": 55,
-      "medium": 102,
+      "medium": 103,
       "hard": 6,
-      "total": 163,
+      "total": 164,
       "streak": 30,
       "activeDays": 118,
       "calendar": {
@@ -127,7 +127,7 @@
         "1792195200": 1,
         "1792368000": 1,
         "1792454400": 9,
-        "1792540800": 1
+        "1792540800": 6
       }
     },
     {
